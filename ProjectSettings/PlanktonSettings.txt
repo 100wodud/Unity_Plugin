@@ -1,0 +1,554 @@
+{
+    "generatePreBuild": true,
+    "generateAar": true,
+    "preset": {
+        "ios": {
+            "appTrackingTransparency": {
+                "active": false,
+                "description": "We use your information in order to enhance your game experience, by serving you personalized ads and measuring the performance of our game."
+            },
+            "admob": {
+                "active": false,
+                "appId": "",
+                "mediations": [
+                    {
+                        "active": false,
+                        "name": "AppLovin",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Chartboost",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "DT Exchange (Fyber)",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Meta (Facebook)",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "ironSource",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Liftoff (Vungle)",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Mintegral",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Pangle",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Unity Ads",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Premium Ads",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    }
+                ]
+            },
+            "appLovin": {
+                "active": false,
+                "appId": "",
+                "mediations": [
+                    {
+                        "active": false,
+                        "name": "AdMob",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Google Ad Manager",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "DT Exchange (Fyber)",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "ironSource",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Liftoff (Vungle)",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Meta (Facebook)",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Mintegral",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Pangel",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Unity Ads",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Premium Ads",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    }
+                ],
+                "adMobAppId": ""
+            },
+            "levelPlay": {
+                "active": false,
+                "appId": "",
+                "mediations": [
+                    {
+                        "active": false,
+                        "name": "AdMob",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "AppLovin",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Chartboost",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "DT Exchange (Fyber)",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Liftoff (Vungle)",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Meta (Facebook)",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Mintegral",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Pangle",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Unity Ads",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    }
+                ],
+                "adMobAppId": ""
+            },
+            "googleUmp": {
+                "active": false,
+                "adMobAppId": ""
+            },
+            "gameCenter": {
+                "active": false
+            },
+            "appsFlyer": {
+                "active": false,
+                "appId": "",
+                "appleAppId": "",
+                "endpointUrl": ""
+            },
+            "tenjin": {
+                "active": false,
+                "appId": ""
+            },
+            "appMetrica": {
+                "active": false,
+                "appId": ""
+            },
+            "firebase": {
+                "active": false,
+                "ios_plist": "",
+                "gcm_defaultSenderId": "",
+                "google_storage_bucket": "",
+                "project_id": "",
+                "google_api_key": "",
+                "google_crash_reporting_api_key": "",
+                "google_app_id": "",
+                "default_web_client_id": "",
+                "activePushNotification": false
+            },
+            "gameAnalytics": {
+                "active": false
+            },
+            "billing": {
+                "active": false
+            },
+            "others": {
+                "active": false,
+                "platform": "ios",
+                "dependencies": "",
+                "repositories": ""
+            }
+        },
+        "android": {
+            "debug": {
+                "active": false
+            },
+            "admob": {
+                "active": false,
+                "appId": "",
+                "mediations": [
+                    {
+                        "active": false,
+                        "name": "AppLovin",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Chartboost",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "DT Exchange (Fyber)",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Meta (Facebook)",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "ironSource",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Liftoff (Vungle)",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Mintegral",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Pangle",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Unity Ads",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Premium Ads",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    }
+                ]
+            },
+            "appLovin": {
+                "active": false,
+                "appId": "",
+                "mediations": [
+                    {
+                        "active": false,
+                        "name": "AdMob",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Google Ad Manager",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "DT Exchange (Fyber)",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "ironSource",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Liftoff (Vungle)",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Meta (Facebook)",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Mintegral",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Pangel",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Unity Ads",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Premium Ads",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    }
+                ],
+                "adMobAppId": ""
+            },
+            "levelPlay": {
+                "active": false,
+                "appId": "",
+                "mediations": [
+                    {
+                        "active": false,
+                        "name": "AdMob",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "AppLovin",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Chartboost",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "DT Exchange (Fyber)",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Liftoff (Vungle)",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Meta (Facebook)",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Mintegral",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Pangle",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    },
+                    {
+                        "active": false,
+                        "name": "Unity Ads",
+                        "pod": "",
+                        "dependency": "",
+                        "maven": ""
+                    }
+                ],
+                "adMobAppId": ""
+            },
+            "googleUmp": {
+                "active": false,
+                "adMobAppId": ""
+            },
+            "playServices": {
+                "active": false,
+                "appId": ""
+            },
+            "appsFlyer": {
+                "active": false,
+                "appId": "",
+                "appleAppId": "",
+                "endpointUrl": ""
+            },
+            "tenjin": {
+                "active": false,
+                "appId": ""
+            },
+            "appMetrica": {
+                "active": false,
+                "appId": ""
+            },
+            "firebase": {
+                "active": false,
+                "ios_plist": "",
+                "gcm_defaultSenderId": "",
+                "google_storage_bucket": "",
+                "project_id": "",
+                "google_api_key": "",
+                "google_crash_reporting_api_key": "",
+                "google_app_id": "",
+                "default_web_client_id": "",
+                "activePushNotification": false
+            },
+            "gameAnalytics": {
+                "active": false
+            },
+            "billing": {
+                "active": false
+            },
+            "others": {
+                "active": false,
+                "platform": "android",
+                "dependencies": "",
+                "repositories": ""
+            }
+        }
+    }
+}

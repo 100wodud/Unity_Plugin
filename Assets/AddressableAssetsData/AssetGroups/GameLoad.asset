@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: GameLoad
+  m_EditorClassIdentifier: Unity.Addressables.Editor::UnityEditor.AddressableAssets.Settings.AddressableAssetGroup
+  m_GroupName: GameLoad
+  m_GUID: 229d2738685b5436b93ecf69715d9aee
+  m_SerializeEntries:
+  - m_GUID: 43b4496753dfd4c9784a8a6cfd928b5f
+    m_Address: Initializer
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 77ce16b2a1b004868b679ff60dc80e15
+    m_Address: LocalizeProvider
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameLoad
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 0e5411738a6a140f49ad851376fee930, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 1fe1b1d9da9ab4212b82aac7006fd120, type: 2}
+    - {fileID: 11400000, guid: 7e1a40427329444a9a1342eebb83b1f1, type: 2}

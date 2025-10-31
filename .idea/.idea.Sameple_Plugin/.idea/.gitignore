@@ -1,0 +1,11 @@
+# 디폴트 무시된 파일
+/shelf/
+/workspace.xml
+# Rider에서 무시된 파일
+/contentModel.xml
+/projectSettingsUpdater.xml
+/.idea.Sameple_Plugin.iml
+/modules.xml
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
