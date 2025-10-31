@@ -1,0 +1,37 @@
+{
+  "name": "com.actionfit.dependency",
+  "version": "1.0.0",
+  "displayName": "ActionFit UPM Dependency",
+  "description": "Unity 프로젝트에 필요한 UPM 스코프 레지스트리를 자동으로 안내하는 패키지입니다.",
+  "unity": "2021.3",
+  "keywords": [
+    "dependency",
+    "upm",
+    "registry"
+  ],
+  "author": {
+    "name": "JYP",
+    "email": "jaeyoung@actionfit.kr",
+    "url": "https://actionfit.co.kr/"
+  },
+  "dependencies": {},
+  "scopedRegistries": [
+    {
+      "name": "package.openupm.com",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.cysharp",
+        "com.google",
+        "com.gameanalytics"
+      ]
+    },
+    {
+      "name": "AppLovin MAX Unity",
+      "url": "https://unity.packages.applovin.com/",
+      "scopes": [
+        "com.applovin.mediation.ads",
+        "com.applovin.mediation.adapters"
+      ]
+    }
+  ]
+}
