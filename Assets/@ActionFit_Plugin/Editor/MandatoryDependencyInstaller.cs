@@ -55,13 +55,19 @@ namespace ActionFit_Plugin.Editor
                 {
                     Name = "* UniTask",
                     Description = "C# async/await를 최적화한 유틸리티",
-                    Source = "com.elex.unitask"
+                    Source = "com.cysharp.unitask"
                 },
                 new()
                 {
                     Name = "* Addressables",
                     Description = "Unity의 에셋 관리 시스템",
                     Source = "com.unity.addressables"
+                },
+                new()
+                {
+                    Name = "* Localization",
+                    Description = "Unity Localize 시스템",
+                    Source = "com.unity.localization"
                 }
             };
 
