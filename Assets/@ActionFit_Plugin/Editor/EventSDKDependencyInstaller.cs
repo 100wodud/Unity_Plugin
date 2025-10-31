@@ -42,7 +42,7 @@ namespace ActionFit_Plugin.Editor
                 {
                     Name = "* 할로",
                     Description = "Singular SDK",
-                    Source = "https://github.com/100wodud/Unity_Plugin.git?path=com.actionfit.dependency"
+                    Source = "https://github.com/100wodud/Plugin_Dependency.git?path=@ActionFit_Dependency"
                 },
                 new()
                 {
