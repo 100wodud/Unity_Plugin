@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "com.applovin.mediation.ads": {
+      "version": "8.4.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.google.external-dependency-manager": "1.2.182"
+      },
+      "url": "https://unity.packages.applovin.com"
+    },
     "com.benoitfreslon.vibration": {
       "version": "https://github.com/BenoitFreslon/Vibration.git",
       "depth": 0,
@@ -16,6 +25,32 @@
     },
     "com.elex.unitask": {
       "version": "2.5.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
+    "com.gameanalytics.sdk": {
+      "version": "7.10.6",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.google.external-dependency-manager": "1.2.168"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.google.ads.mobile": {
+      "version": "10.6.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.google.external-dependency-manager": "1.2.186",
+        "com.unity.modules.androidjni": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
+    "com.google.external-dependency-manager": {
+      "version": "1.2.186",
       "depth": 0,
       "source": "registry",
       "dependencies": {},

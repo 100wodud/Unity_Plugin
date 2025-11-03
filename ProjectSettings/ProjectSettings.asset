@@ -265,7 +265,7 @@ PlayerSettings:
   useCustomMainGradleTemplate: 1
   useCustomLauncherGradleManifest: 1
   useCustomBaseGradleTemplate: 1
-  useCustomGradlePropertiesTemplate: 0
+  useCustomGradlePropertiesTemplate: 1
   useCustomGradleSettingsTemplate: 1
   useCustomProguardFile: 1
   AndroidTargetArchitectures: 3
@@ -832,7 +832,7 @@ PlayerSettings:
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
-    Android: PROJECT_INSTALLED_HAPTIC;ARM_UNITASK
+    Android: PROJECT_INSTALLED_HAPTIC;ARM_UNITASK;ENABLE_EDM4U_SDK;ENABLE_APPLOVIN_SDK;ENABLE_GAN_SDK;gameanalytics_max_enabled;gameanalytics_admob_enabled
     EmbeddedLinux: ENABLE_JSON_CATALOG;ARM_UNITASK
     GameCoreScarlett: ARM_UNITASK
     GameCoreXboxOne: ARM_UNITASK
@@ -849,7 +849,7 @@ PlayerSettings:
     WebGL: ENABLE_JSON_CATALOG
     Windows Store Apps: ENABLE_JSON_CATALOG;ARM_UNITASK
     XboxOne: ENABLE_JSON_CATALOG;ARM_UNITASK
-    iPhone: ENABLE_JSON_CATALOG;ARM_UNITASK
+    iPhone: ENABLE_JSON_CATALOG;ARM_UNITASK;gameanalytics_max_enabled;gameanalytics_admob_enabled
     tvOS: ENABLE_JSON_CATALOG;ARM_UNITASK
   additionalCompilerArguments: {}
   platformArchitecture: {}

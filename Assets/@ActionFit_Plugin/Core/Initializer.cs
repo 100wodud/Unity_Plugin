@@ -1,4 +1,5 @@
 using ActionFit_Plugin.Localize;
+using ActionFit_Plugin.SDK;
 using ActionFit_Plugin.Settings;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -9,6 +10,9 @@ namespace ActionFit_Plugin.Core
     {
         public static Initializer Instance { get; private set; }
         public bool AppFirstOpen  { get; set; } = false;
+
+        #region Initialize
+
         private void Awake()
         {
             Initialized();
@@ -26,6 +30,8 @@ namespace ActionFit_Plugin.Core
             SceneLoader.LoadSceneWithLoading(SceneName.GameScene, OnLoadingLoadBefore, OnSceneLoadedComplete);
         }
 
+        #endregion
+
         private async UniTask OnLoadingLoadBefore()
         {
             PlayerData.Init();
@@ -37,12 +43,8 @@ namespace ActionFit_Plugin.Core
             LocalizeInitializer.Initialized();
             await UniTask.WaitUntil(()=> LocalizeInitializer.IsInitialized);
 
-#if ACTIONFIT_SDK_INSTALL
-            await SDK.Initialized();
-#endif
-            
-#if ACTIONFIT_IAP_INSTALL
-            await IAP.Initialized();
+#if ENABLE_APPLOVIN_SDK
+            await SDKManager.Instance.Initialized();
 #endif
         }
         

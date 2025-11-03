@@ -23,7 +23,7 @@ public static class Haptic
 
         public static void Initialize()
         {
-#if UNITY_ANDROID && PROJECT_INSTALLED_HAPTIC || UNITY_IOS && PROJECT_INSTALLED_HAPTIC
+#if UNITY_ANDROID || UNITY_IOS
             Vibration.Init();
             _using = SettingData.Haptic;
             IsInitialized = true;
@@ -36,9 +36,9 @@ public static class Haptic
             {
                 return;
             }
-#if UNITY_ANDROID && PROJECT_INSTALLED_HAPTIC
+#if UNITY_ANDROID
             Vibration.VibrateAndroid(20);
-#elif UNITY_IOS && PROJECT_INSTALLED_HAPTIC
+#elif UNITY_IOS
             Vibration.VibrateIOS(ImpactFeedbackStyle.Light);
 #endif
         }
@@ -50,9 +50,9 @@ public static class Haptic
                 return;
             }
             
-#if UNITY_ANDROID && PROJECT_INSTALLED_HAPTIC
+#if UNITY_ANDROID
             Vibration.VibrateAndroid(30);
-#elif UNITY_IOS && PROJECT_INSTALLED_HAPTIC
+#elif UNITY_IOS
             Vibration.VibrateIOS(ImpactFeedbackStyle.Soft);
 #endif
         }
@@ -64,9 +64,9 @@ public static class Haptic
                 return;
             }
             
-#if UNITY_ANDROID && PROJECT_INSTALLED_HAPTIC
+#if UNITY_ANDROID
             Vibration.VibrateAndroid(60);
-#elif UNITY_IOS && PROJECT_INSTALLED_HAPTIC
+#elif UNITY_IOS
             Vibration.VibrateIOS(ImpactFeedbackStyle.Medium);
 #endif
         }
@@ -78,9 +78,9 @@ public static class Haptic
                 return;
             }
             
-#if UNITY_ANDROID && PROJECT_INSTALLED_HAPTIC
+#if UNITY_ANDROID
             Vibration.VibrateAndroid(100);
-#elif UNITY_IOS && PROJECT_INSTALLED_HAPTIC
+#elif UNITY_IOS
             Vibration.VibrateIOS(ImpactFeedbackStyle.Heavy);
 #endif
         }

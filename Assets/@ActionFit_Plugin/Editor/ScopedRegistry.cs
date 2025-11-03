@@ -49,7 +49,7 @@ public static class ScopedRegistry
             "com.cysharp", "com.google", "com.gameanalytics","jp.hadashikick","com.coffee","com.google.external-dependency-manager"
         });
 
-        AddIfMissing("AppLovin MAX Unity", "https://unity.packages.applovin.com/", new List<string>
+        AddIfMissing("AppLovin MAX Unity", "https://unity.packages.applovin.com", new List<string>
         {
             "com.applovin.mediation.ads", "com.applovin.mediation.adapters","com.applovin.mediation.dsp"
         });

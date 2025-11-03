@@ -1,14 +1,15 @@
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.Build;
 using UnityEditor.PackageManager;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 namespace ActionFit_Plugin.Editor
 {
-    public class EventSDKDependencyInstaller : EditorWindow
+    public class SDKDependencyInstaller : EditorWindow
     {
-        private Vector2 _scroll;
+        private Vector2 _scroll; 
         
         private class PackageInfoUI
         {
@@ -24,31 +25,49 @@ namespace ActionFit_Plugin.Editor
         private List<PackageInfoUI> _packageList = new();
         private ListRequest _listRequest;
 
-        // 🔄 전체 다운로드 기능용 변수
-        private bool _isBatchInstalling = false;
-        private Queue<PackageInfoUI> _batchQueue = new();
+        private bool _isAllInstalling = false;
+        private Queue<PackageInfoUI> _installQueue = new();
 
-        [MenuItem("ActionFit/SDK/Event Installer")]
+        [MenuItem("ActionFit/SDK/Installer")]
         public static void ShowWindow()
         {
-            GetWindow<EventSDKDependencyInstaller>("SDK Event 패키지");
+            GetWindow<SDKDependencyInstaller>("SDK Event 패키지");
         }
 
         private void OnEnable()
         {
             _packageList = new List<PackageInfoUI>
             {
+                
                 new()
                 {
-                    Name = "* 할로",
-                    Description = "Singular SDK",
-                    Source = "https://github.com/100wodud/Unity_Plugin.git?path=com.actionfit.dependency"
+                    Name = "1. EDM4U",
+                    Description = "External Dependency Manager",
+                    Source = "com.google.external-dependency-manager"
                 },
                 new()
                 {
-                    Name = "* Singular",
+                    Name = "2. Google Mobile Ads",
+                    Description = "Google Mobile Ads for Unity",
+                    Source = "com.google.ads.mobile"
+                },
+                new()
+                {
+                    Name = "Singular",
                     Description = "Singular SDK",
                     Source = "https://github.com/singular-labs/Singular-Unity-SDK.git"
+                },
+                new()
+                {
+                    Name = "AppLovin",
+                    Description = "AppLovin SDK",
+                    Source = "com.applovin.mediation.ads@8.4.2"
+                },
+                new()
+                {
+                    Name = "GAN",
+                    Description = "GameAnalytics SDK",
+                    Source = "com.gameanalytics.sdk"
                 },
             };
 
@@ -93,7 +112,6 @@ namespace ActionFit_Plugin.Editor
 
         private void OnGUI()
         {
-            // 🔹 상단 타이틀 + 전체 다운로드 버튼
             GUILayout.BeginHorizontal();
             GUIStyle titleStyle = new GUIStyle(EditorStyles.boldLabel)
             {
@@ -103,7 +121,7 @@ namespace ActionFit_Plugin.Editor
 
             GUILayout.FlexibleSpace();
 
-            using (new EditorGUI.DisabledScope(_isBatchInstalling))
+            using (new EditorGUI.DisabledScope(_isAllInstalling))
             {
                 if (GUILayout.Button("전체 다운로드", GUILayout.Width(120), GUILayout.Height(30)))
                 {
@@ -221,29 +239,31 @@ namespace ActionFit_Plugin.Editor
                     pkg.IsInstalled = true;
 
                     if (pkg.Request.Status == StatusCode.Success)
+                    {
                         pkg.Status = "설치됨";
+                        string symbol = $"ENABLE_{pkg.Name.ToUpper()}_SDK";
+                        if(pkg.Name is "Singular" or "AppLovin" or "GAN") AddScriptingDefineSymbol(symbol);
+                    }
                     else
                         pkg.Status = "실패";
 
                     pkg.Request = null;
                     Repaint();
 
-                    // 🔄 배치 설치 중이면 다음 패키지 자동 설치
-                    if (_isBatchInstalling)
-                        InstallNextFromBatch();
+                    if (_isAllInstalling) InstallNextFromBatch();
                 }
             }
         }
 
         private void StartBatchInstallation()
         {
-            _isBatchInstalling = true;
-            _batchQueue.Clear();
+            _isAllInstalling = true;
+            _installQueue.Clear();
 
             foreach (var pkg in _packageList)
             {
                 if (!pkg.IsInstalled && !pkg.IsInstalling && pkg.Status == "대기 중")
-                    _batchQueue.Enqueue(pkg);
+                    _installQueue.Enqueue(pkg);
             }
 
             InstallNextFromBatch();
@@ -251,13 +271,13 @@ namespace ActionFit_Plugin.Editor
 
         private void InstallNextFromBatch()
         {
-            if (_batchQueue.Count == 0)
+            if (_installQueue.Count == 0)
             {
-                _isBatchInstalling = false;
+                _isAllInstalling = false;
                 return;
             }
 
-            var pkg = _batchQueue.Dequeue();
+            var pkg = _installQueue.Dequeue();
             pkg.Status = "⏳ 설치 중";
             pkg.IsInstalling = true;
             pkg.Request = Client.Add(pkg.Source);
@@ -269,6 +289,19 @@ namespace ActionFit_Plugin.Editor
             tex.SetPixel(0, 0, color);
             tex.Apply();
             return tex;
+        }
+        
+        private void AddScriptingDefineSymbol(string symbol)
+        {
+            var namedTarget = NamedBuildTarget.FromBuildTargetGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
+            var defines = PlayerSettings.GetScriptingDefineSymbols(namedTarget);
+
+            var defineList = new HashSet<string>(defines.Split(';'));
+            if (!defineList.Contains(symbol))
+            {
+                defineList.Add(symbol);
+                PlayerSettings.SetScriptingDefineSymbols(namedTarget, string.Join(";", defineList));
+            }
         }
     }
 }

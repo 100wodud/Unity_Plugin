@@ -354,6 +354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4917783399590139658}
   - component: {fileID: 2840719652790978331}
+  - component: {fileID: 7701651626220123783}
   m_Layer: 0
   m_Name: Initializer
   m_TagString: Untagged
@@ -390,3 +391,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d8935daaa5c4273ad980653f9abc30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActionFit_Plugin.Core.Initializer
+--- !u!114 &7701651626220123783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9219945529968221172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6442964fe60046b0a373a69458c9e3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SDKManager
+  maxKey: {fileID: 11400000, guid: 682eba0a6514244a3863fa042d4d3607, type: 2}

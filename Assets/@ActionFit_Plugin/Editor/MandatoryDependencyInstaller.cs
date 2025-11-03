@@ -91,7 +91,7 @@ namespace ActionFit_Plugin.Editor
             {
                 if (IsPackageAlreadyInstalled(pkg.Source, _listRequest.Result))
                 {
-                    pkg.Status = "설치됨";
+                    pkg.Status = "설치됨"; 
                     pkg.IsInstalled = true;
                 }
             }
