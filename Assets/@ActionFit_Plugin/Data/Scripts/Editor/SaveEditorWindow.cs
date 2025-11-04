@@ -32,7 +32,7 @@ namespace ActionFit_Plugin.Data.Scripts.Editor
         private FieldInfo[] _fields;
         private Vector2 _scroll;
 
-        [MenuItem("ActionFit/Data/Save Editor", priority = 2)]
+        [MenuItem("ActionFit/Data/Save Editor", priority = 0)]
         public static void ShowEditWindow()
         {
             GetWindow<SaveEditorWindow>("Save Editor");

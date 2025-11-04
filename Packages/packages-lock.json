@@ -56,6 +56,24 @@
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
+    "com.google.firebase.app": {
+      "version": "https://github.com/GameWorkstore/com.google.firebase.app.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.google.external-dependency-manager": "1.2.186"
+      },
+      "hash": "ffddbfcc9806588a3d74dda9e28ea1a051130fe3"
+    },
+    "com.google.firebase.crashlytics": {
+      "version": "https://github.com/GameWorkstore/com.google.firebase.crashlytics.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.google.firebase.app": "12.10.1"
+      },
+      "hash": "848517c6e610a9a9844265de67273bfc02bf1b22"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,

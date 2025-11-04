@@ -14,8 +14,14 @@ dependencies {
     implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1' // Packages/singular-unity-package/SingularSDK/Editor/SingularSDKDependencies.xml:10
     // implementation 'com.google.android.gms:play-services-appset:16.0.0' // Packages/singular-unity-package/SingularSDK/Editor/SingularSDKDependencies.xml:9
     implementation 'com.google.android.gms:play-services-appset:16.0.2' // Packages/com.gameanalytics.sdk/Editor/Android/Dependencies.xml:4
+    implementation 'com.google.android.gms:play-services-base:18.6.0' // Packages/com.google.firebase.app/Firebase/Editor/AppDependencies.xml:17
     implementation 'com.google.android.instantapps:instantapps:1.1.0' // Packages/com.gameanalytics.sdk/Editor/Android/Dependencies.xml:3
     implementation 'com.google.android.ump:user-messaging-platform:3.2.0' // Packages/com.google.ads.mobile/GoogleMobileAds/Editor/GoogleUmpDependencies.xml:7
+    implementation 'com.google.firebase:firebase-analytics:22.4.0' // Packages/com.google.firebase.crashlytics/Firebase/Editor/CrashlyticsDependencies.xml:15
+    implementation 'com.google.firebase:firebase-app-unity:12.10.1' // Packages/com.google.firebase.app/Firebase/Editor/AppDependencies.xml:22
+    implementation 'com.google.firebase:firebase-common:21.0.0' // Packages/com.google.firebase.app/Firebase/Editor/AppDependencies.xml:13
+    implementation 'com.google.firebase:firebase-crashlytics-ndk:19.4.2' // Packages/com.google.firebase.crashlytics/Firebase/Editor/CrashlyticsDependencies.xml:13
+    implementation 'com.google.firebase:firebase-crashlytics-unity:12.10.1' // Packages/com.google.firebase.crashlytics/Firebase/Editor/CrashlyticsDependencies.xml:20
     implementation 'com.singular.sdk:singular_sdk:12.10.0' // Packages/singular-unity-package/SingularSDK/Editor/SingularSDKDependencies.xml:7
 // Android Resolver Dependencies End
 **DEPS**}

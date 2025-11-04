@@ -28,10 +28,10 @@ namespace ActionFit_Plugin.Editor
         private bool _isAllInstalling = false;
         private Queue<PackageInfoUI> _installQueue = new();
 
-        [MenuItem("ActionFit/SDK/Installer")]
+        [MenuItem("ActionFit/SDK/SDK Installer", priority = 2)]
         public static void ShowWindow()
         {
-            GetWindow<SDKDependencyInstaller>("SDK Event 패키지");
+            GetWindow<SDKDependencyInstaller>("SDK 패키지");
         }
 
         private void OnEnable()

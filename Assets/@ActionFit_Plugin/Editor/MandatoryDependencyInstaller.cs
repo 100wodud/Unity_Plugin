@@ -29,7 +29,7 @@ namespace ActionFit_Plugin.Editor
         private bool _isBatchInstalling = false;
         private Queue<PackageInfoUI> _batchQueue = new();
 
-        [MenuItem("ActionFit/Mandatory/Installer")]
+        [MenuItem("ActionFit/Mandatory/Installer", priority = 1)]
         public static void ShowWindow()
         {
             GetWindow<MandatoryDependencyInstaller>("필수 패키지");
