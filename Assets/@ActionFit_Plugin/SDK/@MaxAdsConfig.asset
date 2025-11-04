@@ -14,14 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ActionFit_Plugin.SDK.Max.MaxAdsConfig
   defaultAdsLevel: 0
   commonInterCool: 0
-  maxKey: 
-  androidBannerKey: 
-  androidInterstitialKey: 
-  androidRewardKey: 
+  isAppOpen: 0
+  appOpenInterCool: 0
+  androidBannerKey: 964437a37a6bc631
+  androidInterstitialKey: ed617112cc65c3ed
+  androidRewardKey: a309495269d36513
   iosBannerKey: 
   iosInterstitialKey: 
   iosRewardKey: 
-  androidAppOpenKey: 
+  androidAppOpenKey: ca-app-pub-9059121665920646/3508960627
   iosAppOpenKey: 
   testDeviceCSV: {fileID: 4900000, guid: db0ea30c182b04feb8fcaa7877a0509d, type: 3}
   maxTestDeviceIds:

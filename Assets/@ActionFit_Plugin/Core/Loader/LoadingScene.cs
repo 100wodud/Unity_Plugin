@@ -10,12 +10,14 @@ namespace ActionFit_Plugin.Core.Loader
         {
             string targetScene = SceneLoader.TargetScene;
             if (string.IsNullOrEmpty(targetScene)) return;
-
+            
+            if (!Initializer.Instance.AppFirstOpen) await GameStartLoading();
+            
             SceneLoader.PrepareSceneInit();
             var loadScene = SceneManager.LoadSceneAsync(targetScene, LoadSceneMode.Additive);
             if (loadScene == null) return;
             loadScene.allowSceneActivation = false;
-            await GameStartLoading();
+            if (Initializer.Instance.AppFirstOpen) await SceneChangeLoading();
             loadScene.allowSceneActivation = true;
             await UniTask.WaitUntil(() => loadScene.isDone);
             await SceneLoader.WaitUntilSceneReady();
@@ -29,7 +31,7 @@ namespace ActionFit_Plugin.Core.Loader
         [SerializeField] private GameObject isAppOpen;
         [SerializeField] private GameObject isLoading;
     
-        // 로딩 애니메이션이나 첫 로딩이 될수도 있을듯
+        // 씬 전환 애니메이션
         private async UniTask SceneChangeLoading()
         {
             isAppOpen.gameObject.SetActive(false);
@@ -37,15 +39,13 @@ namespace ActionFit_Plugin.Core.Loader
             await UniTask.Delay(1000);
         }
     
+        // 첫 로딩
         private async UniTask GameStartLoading()
         {
-            if (Initializer.Instance.AppFirstOpen)
-            {
-                await SceneChangeLoading();
-                return;
-            }
+            isAppOpen.gameObject.SetActive(false);
+            isLoading.gameObject.SetActive(true);
             Initializer.Instance.AppFirstOpen = true;
-            isAppOpen.gameObject.SetActive(true);
+            if (SceneLoader.OnGameStartLoading != null) await SceneLoader.OnGameStartLoading.Invoke();
             await UniTask.Delay(1000);
         }
 

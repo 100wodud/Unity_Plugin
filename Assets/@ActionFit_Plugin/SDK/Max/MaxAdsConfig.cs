@@ -15,9 +15,6 @@ namespace ActionFit_Plugin.SDK.Max
         public bool isAppOpen;
         public int appOpenInterCool;
         
-        [Header("MaxKey Settings")]
-        public string maxKey;
-        
         [Header("Android Key Settings")]
         public string androidBannerKey;
         public string androidInterstitialKey;
@@ -33,9 +30,11 @@ namespace ActionFit_Plugin.SDK.Max
         public string androidAppOpenKey;
         public string iosAppOpenKey;
 
+    #if UNITY_EDITOR
         [Header("Test Device IDs")]
         public TextAsset testDeviceCSV;
-        [TextArea(1, 5)] public string[] maxTestDeviceIds;
+    #endif
+        public string[] maxTestDeviceIds;
     }
 
     public abstract class AdsKey

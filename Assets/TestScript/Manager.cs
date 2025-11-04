@@ -1,4 +1,5 @@
 using ActionFit_Plugin.Localize;
+using ActionFit_Plugin.SDK;
 using ActionFit_Plugin.Settings;
 using Cysharp.Threading.Tasks;
 using TMPro;
@@ -112,5 +113,27 @@ public class Manager : MonoBehaviour
     public void GotoLobbbbbbbbbbbbbyNoLoading()
     {
         SceneLoader.LoadSceneWithoutLoading(SceneName.LobbyScene);
+    }
+
+    public void ShowInter()
+    {
+        SDKManager.ShowInterstitial(()=>{Debug.Log("응 전면광고");});
+    }
+    public void ShowReward()
+    {
+        SDKManager.ShowReward(()=>{Debug.Log("응 리워드광고");});
+    }
+
+    private bool _isBanner;
+    public void ShowBanner()
+    {
+        if (_isBanner) SDKManager.HideBanner();
+        else SDKManager.ShowBanner();
+        _isBanner = !_isBanner;
+    }
+
+    public void ShowAppOpen()
+    {
+        SDKManager.ShowAppOpenAd();
     }
 }

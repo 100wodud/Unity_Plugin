@@ -5,7 +5,6 @@ namespace ActionFit_Plugin.SDK.Max
 {
     public struct MaxData
     {
-        public string Key;
         public string BannerKey;
         public string InterstitialKey;
         public string RewardKey;
@@ -32,7 +31,6 @@ namespace ActionFit_Plugin.SDK.Max
         {
             await UniTask.Yield();
             MaxSdkBase.InvokeEventsOnUnityMainThread = true;
-            _maxSdkKey = keyData.Key;
             _maxTestKey = keyData.TestKey;
             _adUnitBannerKey = keyData.BannerKey;
             _adUnitInterstitialKey = keyData.InterstitialKey;
@@ -74,8 +72,7 @@ namespace ActionFit_Plugin.SDK.Max
         } 
     
         public void ShowBanner() => Banner.ShowBanner();
-        public void HideBanner() => Banner.HideBanner();
-        public void LoadReward() => Reward.LoadRewardedAd();   
+        public void HideBanner() => Banner.HideBanner();  
         public void ShowAppOpen() => AppOpen.ShowAppOpenAd();       
     }
 }

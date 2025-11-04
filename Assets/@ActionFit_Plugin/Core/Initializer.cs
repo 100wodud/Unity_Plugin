@@ -1,3 +1,4 @@
+using System;
 using ActionFit_Plugin.Localize;
 using ActionFit_Plugin.SDK;
 using ActionFit_Plugin.Settings;
@@ -15,11 +16,6 @@ namespace ActionFit_Plugin.Core
 
         private void Awake()
         {
-            Initialized();
-        }
-
-        private void Initialized()
-        {
             if (Instance != null && Instance != this)
             {
                 Destroy(gameObject);
@@ -27,7 +23,16 @@ namespace ActionFit_Plugin.Core
             }
             Instance = this;
             DontDestroyOnLoad(this);
-            SceneLoader.LoadSceneWithLoading(SceneName.GameScene, OnLoadingLoadBefore, OnSceneLoadedComplete);
+        }
+
+        private void Start()
+        {
+            Initialized();
+        }
+
+        private void Initialized()
+        {
+            SceneLoader.LoadSceneWithLoading(SceneName.GameScene,null, OnLoadingLoadBefore, OnSceneLoadedComplete);
         }
 
         #endregion
@@ -44,8 +49,10 @@ namespace ActionFit_Plugin.Core
             await UniTask.WaitUntil(()=> LocalizeInitializer.IsInitialized);
 
 #if ENABLE_APPLOVIN_SDK
-            await SDKManager.Instance.Initialized();
+            SDKManager.Initialized();
+            await UniTask.WaitUntil(()=> SDKManager.IsInitialized);
 #endif
+            
         }
         
         private void OnSceneLoadedComplete()

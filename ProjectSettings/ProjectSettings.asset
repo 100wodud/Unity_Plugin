@@ -142,7 +142,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 0.1.0
+  bundleVersion: 0.1.1
   preloadedAssets:
   - {fileID: 0}
   - {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
@@ -832,7 +832,7 @@ PlayerSettings:
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
-    Android: PROJECT_INSTALLED_HAPTIC;ARM_UNITASK;ENABLE_EDM4U_SDK;ENABLE_APPLOVIN_SDK;ENABLE_GAN_SDK;gameanalytics_max_enabled;gameanalytics_admob_enabled
+    Android: PROJECT_INSTALLED_HAPTIC;ARM_UNITASK;ENABLE_APPLOVIN_SDK;ENABLE_GAN_SDK;gameanalytics_max_enabled;gameanalytics_admob_enabled;ENABLE_FIREBASE_SDK
     EmbeddedLinux: ENABLE_JSON_CATALOG;ARM_UNITASK
     GameCoreScarlett: ARM_UNITASK
     GameCoreXboxOne: ARM_UNITASK

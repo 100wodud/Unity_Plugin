@@ -16,6 +16,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-appset:16.0.2' // Packages/com.gameanalytics.sdk/Editor/Android/Dependencies.xml:4
     implementation 'com.google.android.gms:play-services-base:18.6.0' // Packages/com.google.firebase.app/Firebase/Editor/AppDependencies.xml:17
     implementation 'com.google.android.instantapps:instantapps:1.1.0' // Packages/com.gameanalytics.sdk/Editor/Android/Dependencies.xml:3
+    // implementation 'com.google.android.ump:user-messaging-platform:2.1.0' // Assets/MaxSdk/AppLovin/Editor/Dependencies.xml:4
     implementation 'com.google.android.ump:user-messaging-platform:3.2.0' // Packages/com.google.ads.mobile/GoogleMobileAds/Editor/GoogleUmpDependencies.xml:7
     implementation 'com.google.firebase:firebase-analytics:22.4.0' // Packages/com.google.firebase.crashlytics/Firebase/Editor/CrashlyticsDependencies.xml:15
     implementation 'com.google.firebase:firebase-app-unity:12.10.1' // Packages/com.google.firebase.app/Firebase/Editor/AppDependencies.xml:22

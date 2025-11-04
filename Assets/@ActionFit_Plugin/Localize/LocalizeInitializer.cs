@@ -21,7 +21,7 @@ namespace ActionFit_Plugin.Localize
 
             if (handle.Status != AsyncOperationStatus.Succeeded)
             {
-                Debug.LogError("[Localized] LocalizeProvider Addressables 로드 실패!");
+                Debug.LogError("[Localized] LocalizeProvider Addressables Load Fail!");
                 IsInitialized = true;
                 return;
             }

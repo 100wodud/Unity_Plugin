@@ -40,37 +40,37 @@ namespace ActionFit_Plugin.Editor
             {
                 new()
                 {
-                    Name = "1. Firebase App",
+                    Name = "* App",
                     Description = "필수 설치",
                     Source = "https://github.com/GameWorkstore/com.google.firebase.app.git"
                 },
                 new()
                 {
-                    Name = "2. Firebase Crashlytics",
+                    Name = "* Crashlytics",
                     Description = "실시간 비정상 종료 보고 도구",
                     Source = "https://github.com/GameWorkstore/com.google.firebase.crashlytics.git"
                 },
                 new()
                 {
-                    Name = "3. Firebase Analytics",
+                    Name = "* Analytics",
                     Description = "이벤트 로깅",
                     Source = "https://github.com/GameWorkstore/com.google.firebase.analytics.git"
                 },
                 new()
                 {
-                    Name = "Firebase Remote Config",
+                    Name = "RemoteConfig",
                     Description = "A/B테스트",
                     Source = "https://github.com/GameWorkstore/com.google.firebase.remote-config.git"
                 },
                 new()
                 {
-                    Name = "Firebase Auth",
+                    Name = "Auth",
                     Description = "사용자 인증",
                     Source = "https://github.com/GameWorkstore/com.google.firebase.auth.git"
                 },
                 new()
                 {
-                    Name = "Firebase Messaging",
+                    Name = "Messaging",
                     Description = "FCM 메시징 서비스",
                     Source = "https://github.com/GameWorkstore/com.google.firebase.messaging.git"
                 },
@@ -246,8 +246,9 @@ namespace ActionFit_Plugin.Editor
                     if (pkg.Request.Status == StatusCode.Success)
                     {
                         pkg.Status = "설치됨";
-                        string symbol = "ENABLE_FIREBASE_SDK";
-                        if(pkg.Name is "1. Firebase App") AddScriptingDefineSymbol(symbol);
+                        string symbol = $"ENABLE_FIREBASE_{pkg.Name.ToUpper()}_SDK";
+                        if(pkg.Name is "* App") symbol = "ENABLE_FIREBASE_SDK";
+                        if(pkg.Name is "Singular" or "AppLovin" or "GAN") AddScriptingDefineSymbol(symbol);
                     }
                     else
                         pkg.Status = "실패";

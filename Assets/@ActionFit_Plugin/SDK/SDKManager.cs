@@ -1,63 +1,70 @@
 using System;
 using System.Collections;
 using ActionFit_Plugin.Core;
+using ActionFit_Plugin.Localize;
 using ActionFit_Plugin.SDK.Ads;
 using ActionFit_Plugin.SDK.Max;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace ActionFit_Plugin.SDK
 {
-    public class SDKManager : MonoBehaviour
+    public static class SDKManager
     {
-        [SerializeField] private MaxAdsConfig maxKey;
+        private static MaxAdsConfig _maxKey;
 #if ENABLE_APPLOVIN_SDK  
-        public static SDKManager Instance { get; private set; }
-        private MaxSDKInitializer Max { get; set; }
-        private MaxData _maxKeyData;
-        private bool _initialize;
-        private bool _initFirebase;
+        private static MaxSDKInitializer Max { get; set; }
+        private static MaxData _maxKeyData;
+        public static bool IsInitialized = false;
         public static int DefaultAdsLevel { get; private set; } = 9;
         public static int Common_Inter_Cool { get; private set; } = 60;
         public static int AppOpen_Inter_Cool { get; private set; } = 180;
-        
-        private void Awake()
+    
+        public static async void Initialized()
         {
-            if (Instance != null && Instance != this)
+            if(IsInitialized) return;
+            AsyncOperationHandle<MaxAdsConfig> handle = Addressables.LoadAssetAsync<MaxAdsConfig>("@MaxAdsConfig");
+            await handle.Task;
+
+            if (handle.Status != AsyncOperationStatus.Succeeded)
             {
-                Destroy(gameObject);
+                Debug.LogError("[SDKManager] MaxKey Addressables Load Fail!");
+                IsInitialized = true;
                 return;
             }
-
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-    
-        public async UniTask Initialized()
-        {
-            if(_initialize) return;
-            _initialize = true;
+            _maxKey = handle.Result;
             Max = new MaxSDKInitializer();
             MaxKeyInitialize();
-            await Max.MaxInit(_maxKeyData);
+            
+            try
+            {
+                await Max.MaxInit(_maxKeyData);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("[SDKManager] MaxSDKInitializer Fail!");
+                IsInitialized = true;
+            }
             ApplicationEventSystem.OnAppStateForeground += ReturnAppForeground;
+            IsInitialized = true;
         }
     
-        private void MaxKeyInitialize()
+        private static void MaxKeyInitialize()
         {
-            DefaultAdsLevel = maxKey.defaultAdsLevel;
-            Common_Inter_Cool = maxKey.commonInterCool;
-            AppOpen_Inter_Cool = maxKey.appOpenInterCool;
+            DefaultAdsLevel = _maxKey.defaultAdsLevel;
+            Common_Inter_Cool = _maxKey.commonInterCool;
+            AppOpen_Inter_Cool = _maxKey.appOpenInterCool;
         
             _maxKeyData = new MaxData
             {
-                Key = maxKey.maxKey,   
-                TestKey = maxKey.maxTestDeviceIds,
+                TestKey = _maxKey.maxTestDeviceIds,
 #if UNITY_ANDROID || UNITY_EDITOR
-                BannerKey = maxKey.androidBannerKey,
-                InterstitialKey = maxKey.androidInterstitialKey,
-                RewardKey = maxKey.androidRewardKey,
-                AppOpenKey = maxKey.androidAppOpenKey,
+                BannerKey = _maxKey.androidBannerKey,
+                InterstitialKey = _maxKey.androidInterstitialKey,
+                RewardKey = _maxKey.androidRewardKey,
+                AppOpenKey = _maxKey.androidAppOpenKey,
 #elif UNITY_IOS
                 BannerKey = maxKey.iosBannerKey,
                 InterstitialKey = maxKey.iosInterstitialKey,
@@ -69,18 +76,26 @@ namespace ActionFit_Plugin.SDK
     
         #region Ads Manager
 
-        public async void ShowIn(string key, Action action = null, Action failAction = null)
+        public static async void ShowInterstitial(Action action = null, Action failAction = null, string key = null)
         {
             await UniTask.Delay(300); 
-            AdExtension.UpdateLastCooldownTime(key);
-            Max.ShowInterstitial(action, failAction);
+            if(!string.IsNullOrEmpty(key)) AdExtension.UpdateLastCooldownTime(key);
+            
+            try
+            {
+                Max.ShowInterstitial(action, failAction);
+            }
+            catch (Exception e)
+            {
+                failAction?.Invoke();
+                ApplicationEventSystem.IsWatchingAd = false;
+                Debug.Log("Error Interstitial Ads: " + e.Message);
+            }
         }
-    
-        public void ShowRe(Action action = null, Action failAction = null) => StartCoroutine(RewardShow(action, failAction));
         
-        private IEnumerator RewardShow( Action action = null, Action failAction = null)
+        public static async void ShowReward( Action action = null, Action failAction = null)
         {
-            yield return new WaitForSecondsRealtime(0.3f);
+            await UniTask.Delay(300);
             try
             {
                 Max.ShowReward(action, failAction);
@@ -93,12 +108,11 @@ namespace ActionFit_Plugin.SDK
             }
         }
     
-        public void ShowBanner() => Max.ShowBanner();
-        public void HideBanner() => Max.HideBanner();
-        public void LoadReward() => Max.LoadReward();
-        public void ShowAppOpenAd() => Max.ShowAppOpen();
+        public static void ShowBanner() => Max.ShowBanner();
+        public static void HideBanner() => Max.HideBanner();
+        public static void ShowAppOpenAd() => Max.ShowAppOpen();
 
-        public bool InterstitialCondition(string type, bool force = false)
+        public static bool InterstitialCondition(string type, bool force = false)
         {
             if (force) return true;
         
@@ -117,9 +131,9 @@ namespace ActionFit_Plugin.SDK
             return false;
         }
 
-        private void ReturnAppForeground()
+        private static void ReturnAppForeground()
         {
-            if(!maxKey.isAppOpen) return;
+            if(!_maxKey.isAppOpen) return;
         
             if (InterstitialCondition(AdsKey.AppOpenCooldown))
             {
@@ -129,6 +143,6 @@ namespace ActionFit_Plugin.SDK
         }
 
         #endregion
-    }
 #endif
+    }
 }
