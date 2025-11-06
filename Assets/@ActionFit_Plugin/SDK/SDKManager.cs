@@ -44,7 +44,7 @@ namespace ActionFit_Plugin.SDK
             }
             catch (Exception e)
             {
-                Debug.LogError("[SDKManager] MaxSDKInitializer Fail!");
+                Debug.LogError($"[SDKManager] MaxSDKInitializer Fail: {e.Message}");
                 IsInitialized = true;
             }
             ApplicationEventSystem.OnAppStateForeground += ReturnAppForeground;

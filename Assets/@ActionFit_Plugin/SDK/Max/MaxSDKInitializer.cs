@@ -47,13 +47,13 @@ namespace ActionFit_Plugin.SDK.Max
             Reward = new Rewards(_adUnitRewardKey);
             Banner = new Banner(_adUnitBannerKey);
             AppOpen = new AppOpen(_adUnitAppOpenKey);
-            AppOpen.InitializeAppOpenAds();
             var sdkInitCompletionSource = new UniTaskCompletionSource<bool>();
             MaxSdkCallbacks.OnSdkInitializedEvent += success =>
             {
                 Interstitial.InitializeInterstitialAds();
                 Reward.InitializeRewardAds();
                 Banner.InitializeBannerAds();
+                AppOpen.InitializeAppOpenAds();
                 sdkInitCompletionSource.TrySetResult(true);
             };
             MaxSdk.SetVerboseLogging(false);

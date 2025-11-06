@@ -1,4 +1,3 @@
-using System;
 using ActionFit_Plugin.Localize;
 using ActionFit_Plugin.SDK;
 using ActionFit_Plugin.Settings;

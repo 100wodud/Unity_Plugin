@@ -59,9 +59,6 @@
 -keep class com.pgl.sys.ces.* { *; }
 -keep class com.bytedance.android.* { *; }
 
-# 📡 Native update alert plugin
--keep class com.actionfit.nativeupdatealert.updatedialogmanager { *; }
-
 # 📱 Android 기본 클래스 예외
 -keep class android.net.ConnectivityManager.** { *; }
 

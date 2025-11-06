@@ -832,7 +832,7 @@ PlayerSettings:
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
-    Android: PROJECT_INSTALLED_HAPTIC;ARM_UNITASK;ENABLE_GAN_SDK;gameanalytics_max_enabled;gameanalytics_admob_enabled;ENABLE_FIREBASE_SDK;ENABLE_APPLOVIN_SDK
+    Android: PROJECT_INSTALLED_HAPTIC;ARM_UNITASK;ENABLE_GAN_SDK;gameanalytics_max_enabled;gameanalytics_admob_enabled;ENABLE_FIREBASE_SDK;ENABLE_APPLOVIN_SDK;ENABLE_SINGULAR_SDK
     EmbeddedLinux: ENABLE_JSON_CATALOG;ARM_UNITASK
     GameCoreScarlett: ARM_UNITASK
     GameCoreXboxOne: ARM_UNITASK
