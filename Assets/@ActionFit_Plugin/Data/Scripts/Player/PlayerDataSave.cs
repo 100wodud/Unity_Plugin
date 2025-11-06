@@ -4,6 +4,7 @@ using ActionFit_Plugin.Data.Scripts;
 public class PlayerDataSave : ISaveObject
 {
     public int clearLevel = 0;
+    public string name = "";
     
     public void Flush() { }
 }

@@ -52,7 +52,6 @@ namespace ActionFit_Plugin.Core
             SDKManager.Initialized();
             await UniTask.WaitUntil(()=> SDKManager.IsInitialized);
 #endif
-            
         }
         
         private void OnSceneLoadedComplete()

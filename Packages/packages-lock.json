@@ -1,5 +1,33 @@
 {
   "dependencies": {
+    "com.applovin.mediation.adapters.google.android": {
+      "version": "24070000.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://unity.packages.applovin.com"
+    },
+    "com.applovin.mediation.adapters.google.ios": {
+      "version": "12120000.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://unity.packages.applovin.com"
+    },
+    "com.applovin.mediation.adapters.googleadmanager.android": {
+      "version": "24070000.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://unity.packages.applovin.com"
+    },
+    "com.applovin.mediation.adapters.googleadmanager.ios": {
+      "version": "12120000.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://unity.packages.applovin.com"
+    },
     "com.applovin.mediation.ads": {
       "version": "8.4.2",
       "depth": 0,
@@ -30,17 +58,8 @@
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
-    "com.gameanalytics.sdk": {
-      "version": "7.10.6",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.google.external-dependency-manager": "1.2.168"
-      },
-      "url": "https://package.openupm.com"
-    },
     "com.google.ads.mobile": {
-      "version": "10.6.0",
+      "version": "10.4.2",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -55,24 +74,6 @@
       "source": "registry",
       "dependencies": {},
       "url": "https://package.openupm.com"
-    },
-    "com.google.firebase.app": {
-      "version": "https://github.com/GameWorkstore/com.google.firebase.app.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.google.external-dependency-manager": "1.2.186"
-      },
-      "hash": "ffddbfcc9806588a3d74dda9e28ea1a051130fe3"
-    },
-    "com.google.firebase.crashlytics": {
-      "version": "https://github.com/GameWorkstore/com.google.firebase.crashlytics.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.google.firebase.app": "12.10.1"
-      },
-      "hash": "848517c6e610a9a9844265de67273bfc02bf1b22"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
@@ -237,6 +238,19 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.purchasing": {
+      "version": "4.13.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0",
+        "com.unity.services.core": "1.12.5",
+        "com.unity.modules.androidjni": "1.0.0",
+        "com.unity.modules.jsonserialize": "1.0.0",
+        "com.unity.modules.unitywebrequest": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.render-pipelines.core": {
       "version": "17.2.0",
       "depth": 1,
@@ -377,15 +391,6 @@
         "com.unity.modules.xr": "1.0.0"
       },
       "url": "https://packages.unity.com"
-    },
-    "singular-unity-package": {
-      "version": "https://github.com/singular-labs/Singular-Unity-SDK.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.unity.nuget.newtonsoft-json": "3.2.1"
-      },
-      "hash": "5d024047b378c999986fcb58773b323293d015c8"
     },
     "com.unity.modules.accessibility": {
       "version": "1.0.0",

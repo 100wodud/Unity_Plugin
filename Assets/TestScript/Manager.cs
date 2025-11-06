@@ -114,7 +114,7 @@ public class Manager : MonoBehaviour
     {
         SceneLoader.LoadSceneWithoutLoading(SceneName.LobbyScene);
     }
-
+#if ENABLE_APPLOVIN_SDK
     public void ShowInter()
     {
         SDKManager.ShowInterstitial(()=>{Debug.Log("응 전면광고");});
@@ -136,4 +136,5 @@ public class Manager : MonoBehaviour
     {
         SDKManager.ShowAppOpenAd();
     }
+#endif
 }

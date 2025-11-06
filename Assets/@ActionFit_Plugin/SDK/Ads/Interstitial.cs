@@ -1,7 +1,10 @@
+#if ENABLE_APPLOVIN_SDK
 using System;
 using ActionFit_Plugin.Core;
-using Singular;
 using UnityEngine;
+#if ENABLE_SINGULAR_SDK
+using Singular;
+#endif
 
 public class Interstitial : IDisposable
 {
@@ -110,3 +113,4 @@ public class Interstitial : IDisposable
 #endif
     }
 }
+#endif

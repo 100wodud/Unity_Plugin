@@ -1,8 +1,11 @@
+#if ENABLE_APPLOVIN_SDK
 using System;
 using System.Collections.Generic;
 using ActionFit_Plugin.Core;
-using Singular;
 using UnityEngine;
+#if ENABLE_SINGULAR_SDK
+using Singular;
+#endif
 
 public class Rewards : IDisposable
 {
@@ -130,3 +133,4 @@ public class Rewards : IDisposable
         LoadRewardedAd();
     }
 }
+#endif

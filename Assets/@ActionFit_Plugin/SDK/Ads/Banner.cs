@@ -1,7 +1,10 @@
+#if ENABLE_APPLOVIN_SDK
 using System;
 using System.Collections.Generic;
-using Singular;
 using UnityEngine;
+#if ENABLE_SINGULAR_SDK
+using Singular;
+#endif
 
 public class Banner
 {
@@ -54,3 +57,4 @@ public class Banner
 #endif
     }
 }
+#endif

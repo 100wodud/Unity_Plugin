@@ -55,7 +55,7 @@ namespace ActionFit_Plugin.Editor
                 {
                     Name = "* UniTask",
                     Description = "C# async/await를 최적화한 유틸리티",
-                    Source = "com.cysharp.unitask"
+                    Source = "com.elex.unitask"
                 },
                 new()
                 {

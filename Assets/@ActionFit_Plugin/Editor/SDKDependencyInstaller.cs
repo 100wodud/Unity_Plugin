@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Build;
@@ -49,7 +50,7 @@ namespace ActionFit_Plugin.Editor
                 {
                     Name = "2. Google Mobile Ads",
                     Description = "Google Mobile Ads for Unity",
-                    Source = "com.google.ads.mobile"
+                    Source = "com.google.ads.mobile@10.4.2"
                 },
                 new()
                 {
@@ -305,3 +306,4 @@ namespace ActionFit_Plugin.Editor
         }
     }
 }
+#endif

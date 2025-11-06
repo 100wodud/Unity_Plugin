@@ -1,3 +1,4 @@
+#if ENABLE_APPLOVIN_SDK
 using System;
 using Cysharp.Threading.Tasks;
 
@@ -76,3 +77,4 @@ namespace ActionFit_Plugin.SDK.Max
         public void ShowAppOpen() => AppOpen.ShowAppOpenAd();       
     }
 }
+#endif

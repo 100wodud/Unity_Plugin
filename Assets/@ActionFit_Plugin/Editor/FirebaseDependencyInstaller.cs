@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.Build;
@@ -311,3 +312,4 @@ namespace ActionFit_Plugin.Editor
         }
     }
 }
+#endif

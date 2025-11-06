@@ -1,10 +1,12 @@
+#if ENABLE_APPLOVIN_SDK
 using System;
-using System.Collections.Generic;
 using ActionFit_Plugin.Core;
 using Cysharp.Threading.Tasks;
 using GoogleMobileAds.Api;
-using Singular;
 using UnityEngine;
+#if ENABLE_SINGULAR_SDK
+using Singular;
+#endif
 
 public class AppOpen : IDisposable
 {
@@ -110,3 +112,4 @@ public class AppOpen : IDisposable
         LoadAppOpenAd();
     }
 }
+#endif
