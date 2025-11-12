@@ -13,6 +13,7 @@ namespace ActionFit_Plugin.SDK
 {
     public static class SDKManager
     {
+        public static bool IsDoingIAP { get; set; } 
         private static MaxAdsConfig _maxKey;
 #if ENABLE_APPLOVIN_SDK  
         private static MaxSDKInitializer Max { get; set; }
@@ -114,6 +115,7 @@ namespace ActionFit_Plugin.SDK
 
         public static bool InterstitialCondition(string type, bool force = false)
         {
+            if (IsDoingIAP) return false;
             if (force) return true;
         
             switch (type)

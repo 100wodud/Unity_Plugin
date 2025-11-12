@@ -6,16 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/@ActionFit_Plugin/Scenes/InitScene.unity
+    path: Assets/@ActionFit_Plugin/TestScenes/InitScene.unity
     guid: 2e23df7370bf64008ad11a87868a607a
   - enabled: 1
-    path: Assets/@ActionFit_Plugin/Scenes/GameScene.unity
+    path: Assets/@ActionFit_Plugin/TestScenes/GameScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/@ActionFit_Plugin/Scenes/LoadingScene.unity
+    path: Assets/@ActionFit_Plugin/TestScenes/LoadingScene.unity
     guid: 1f12240cc32e44dda93e3b7b6f4307b3
   - enabled: 1
-    path: Assets/@ActionFit_Plugin/Scenes/LobbyScene.unity
+    path: Assets/@ActionFit_Plugin/TestScenes/LobbyScene.unity
     guid: 411adb62af0d5429788cfb8540be71a2
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: ce34a3aa0b7dc485884cda2fdc817271, type: 2}

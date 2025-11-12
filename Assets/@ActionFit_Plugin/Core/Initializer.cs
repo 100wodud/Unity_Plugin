@@ -1,5 +1,8 @@
+using System;
+using ActionFit_Plugin.IAP;
 using ActionFit_Plugin.Localize;
 using ActionFit_Plugin.SDK;
+using ActionFit_Plugin.SDK.Firebase;
 using ActionFit_Plugin.Settings;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -9,6 +12,9 @@ namespace ActionFit_Plugin.Core
     public class Initializer : MonoBehaviour
     {
         public static Initializer Instance { get; private set; }
+#if ENABLE_IN_APP_PURCHASE
+        public IAPManager IAP;
+#endif
         public bool AppFirstOpen  { get; set; } = false;
 
         #region Initialize
@@ -26,6 +32,7 @@ namespace ActionFit_Plugin.Core
 
         private void Start()
         {
+            //ConfigureLogger();
             Initialized();
         }
 
@@ -33,12 +40,21 @@ namespace ActionFit_Plugin.Core
         {
             SceneLoader.LoadSceneWithLoading(SceneName.GameScene,null, OnLoadingLoadBefore, OnSceneLoadedComplete);
         }
+        
+        private void ConfigureLogger()
+        {
+#if !UNITY_EDITOR
+            Debug.unityLogger.logEnabled = false;
+#else
+            Debug.unityLogger.logEnabled = true;
+#endif
+        }
 
         #endregion
 
         private async UniTask OnLoadingLoadBefore()
         {
-            PlayerData.Init();
+            PlayerData.Initialized();
             await UniTask.WaitUntil(()=> PlayerData.IsInitialized);
             
             Setting.Initialized();
@@ -50,6 +66,15 @@ namespace ActionFit_Plugin.Core
 #if ENABLE_APPLOVIN_SDK
             SDKManager.Initialized();
             await UniTask.WaitUntil(()=> SDKManager.IsInitialized);
+#endif
+            
+#if ENABLE_FIREBASE_SDK
+            await FirebaseInitializer.Initialized();
+            await UniTask.WaitUntil(()=> FirebaseInitializer.IsInitialized);
+#endif
+            
+#if ENABLE_IN_APP_PURCHASE
+            await IAP.Initialized().Timeout(TimeSpan.FromSeconds(4));;
 #endif
         }
         

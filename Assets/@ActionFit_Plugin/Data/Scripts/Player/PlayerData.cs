@@ -8,7 +8,7 @@ public static class PlayerData
     public static bool IsInitialized { get; private set; }
     private static PlayerDataSave _save;
 
-    public static void Init()
+    public static void Initialized()
     {
         SaveController.Init();
         _save = SaveController.GetSaveObject<PlayerDataSave>("PlayerDataSave");
@@ -23,6 +23,11 @@ public static class PlayerData
         saveSetter(value);
         SaveController.MarkAsSaveIsRequired();
         eventCallback?.Invoke();
+    }
+    public static bool AdsRemove
+    {
+        get => _save.adsRemove;
+        set => SetAndSave(ref _save.adsRemove, value, v => _save.adsRemove = v);
     }
 
     public static int ClearLevel

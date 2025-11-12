@@ -1,8 +1,41 @@
+
+#if ENABLE_FIREBASE_SDK
+using System;
+using Cysharp.Threading.Tasks;
+using Firebase;
 using UnityEngine;
 
-public class FirebaseInitializer
+namespace ActionFit_Plugin.SDK.Firebase
 {
-    //
-    // public RemoteConfigManager RemoteConfig { get; private set; }
-    // public AuthManager Auth { get; private set; }
+    public static class FirebaseInitializer
+    {
+        public static bool IsInitialized { get; private set; }
+        public static async UniTask Initialized()
+        {
+            if (IsInitialized) return;
+            try
+            {
+                var dependencyStatus = await FirebaseApp.CheckAndFixDependenciesAsync();
+                if (dependencyStatus == DependencyStatus.Available)
+                {
+#if UNITY_IOS && !UNITY_EDITOR
+                    await UniTask.Delay(1000); // 최소 1초 이상
+#endif
+                    IsInitialized = true;
+                    Debug.Log("[Firebase] Initialized");
+                }
+                else
+                {
+                    Debug.LogError("[Firebase] Fail Initialized: " + dependencyStatus);
+                }
+                await UniTask.WaitForSeconds(1f);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("[Firebase] Fail Initialized: " + e.Message);
+                IsInitialized = true;
+            } 
+        }
+    }
 }
+#endif

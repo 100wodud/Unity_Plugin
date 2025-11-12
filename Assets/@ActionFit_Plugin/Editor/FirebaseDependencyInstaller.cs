@@ -248,8 +248,11 @@ namespace ActionFit_Plugin.Editor
                     {
                         pkg.Status = "설치됨";
                         string symbol = $"ENABLE_FIREBASE_{pkg.Name.ToUpper()}_SDK";
-                        if(pkg.Name is "* App") symbol = "ENABLE_FIREBASE_SDK";
-                        if(pkg.Name is "Singular" or "AppLovin" or "GAN") AddScriptingDefineSymbol(symbol);
+                        if (pkg.Name is "* App")
+                        {
+                            symbol = "ENABLE_FIREBASE_SDK";
+                            AddScriptingDefineSymbol(symbol);
+                        }
                     }
                     else
                         pkg.Status = "실패";
