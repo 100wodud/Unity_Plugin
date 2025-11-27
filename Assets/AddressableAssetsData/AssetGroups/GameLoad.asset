@@ -21,18 +21,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameLoad
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 682eba0a6514244a3863fa042d4d3607
-    m_Address: '@MaxAdsConfig'
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - GameLoad
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 77ce16b2a1b004868b679ff60dc80e15
-    m_Address: LocalizeProvider
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - GameLoad
-    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 0e5411738a6a140f49ad851376fee930, type: 2}
   m_SchemaSet:

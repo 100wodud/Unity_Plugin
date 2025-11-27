@@ -251,7 +251,7 @@ namespace ActionFit_Plugin.Editor
                         if (pkg.Name is "* App")
                         {
                             symbol = "ENABLE_FIREBASE_SDK";
-                            AddScriptingDefineSymbol(symbol);
+                            AddScriptingDefineSymbolToAllPlatforms(symbol);
                         }
                     }
                     else
@@ -301,17 +301,23 @@ namespace ActionFit_Plugin.Editor
             return tex;
         }
         
-        private void AddScriptingDefineSymbol(string symbol)
+        private static void AddScriptingDefineSymbol(BuildTargetGroup targetGroup, string symbol)
         {
-            var namedTarget = NamedBuildTarget.FromBuildTargetGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
+            var namedTarget = NamedBuildTarget.FromBuildTargetGroup(targetGroup);
             var defines = PlayerSettings.GetScriptingDefineSymbols(namedTarget);
-
             var defineList = new HashSet<string>(defines.Split(';'));
+
             if (!defineList.Contains(symbol))
             {
                 defineList.Add(symbol);
                 PlayerSettings.SetScriptingDefineSymbols(namedTarget, string.Join(";", defineList));
             }
+        }
+
+        private static void AddScriptingDefineSymbolToAllPlatforms(string symbol)
+        {
+            AddScriptingDefineSymbol(BuildTargetGroup.Android, symbol);
+            AddScriptingDefineSymbol(BuildTargetGroup.iOS, symbol);
         }
     }
 }

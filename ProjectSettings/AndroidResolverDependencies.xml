@@ -9,7 +9,9 @@
     <package>com.google.android.gms:play-services-ads:24.5.0</package>
     <package>com.google.android.gms:play-services-ads-identifier:18.0.1</package>
     <package>com.google.android.gms:play-services-appset:16.0.0</package>
+    <package>com.google.android.gms:play-services-appset:16.0.2</package>
     <package>com.google.android.gms:play-services-base:18.6.0</package>
+    <package>com.google.android.instantapps:instantapps:1.1.0</package>
     <package>com.google.android.ump:user-messaging-platform:2.1.0</package>
     <package>com.google.android.ump:user-messaging-platform:3.2.0</package>
     <package>com.google.firebase:firebase-analytics:22.4.0</package>

@@ -9,17 +9,17 @@ namespace ActionFit_Plugin.Data.Scripts
     {
         [SerializeField] SavedDataContainer[] saveObjects;
         private List<SavedDataContainer> saveObjectsList;
-        private float lastFlushTime = 0;
+        private float _lastFlushTime = 0;
         public float Time { get; set; }
 
         
         #region Data Fields
         // 저장할 데이터 이곳에
-        [SerializeField] DateTime lastExitTime;
-        public DateTime LastExitTime => lastExitTime;
+        private DateTime _lastExitTime;
+        public DateTime LastExitTime => _lastExitTime;
         
-        [SerializeField] float gameTime;
-        //public float GameTime => gameTime + (Time - lastFlushTime);
+        private float _gameTime;
+        public float GameTime => _gameTime + (Time - _lastFlushTime);
         
         #endregion
 
@@ -40,7 +40,7 @@ namespace ActionFit_Plugin.Data.Scripts
             }
 
             Time = time;
-            lastFlushTime = Time;
+            _lastFlushTime = Time;
         }
 
         public void Flush(bool updateLastExitTime)
@@ -54,11 +54,11 @@ namespace ActionFit_Plugin.Data.Scripts
                 saveObject.Flush();
             }
 
-            gameTime += Time - lastFlushTime;
+            _gameTime += Time - _lastFlushTime;
 
-            lastFlushTime = Time;
+            _lastFlushTime = Time;
 
-            if(updateLastExitTime) lastExitTime = DateTime.Now;
+            if(updateLastExitTime) _lastExitTime = DateTime.Now;
         }
 
         public T GetSaveObject<T>(int hash) where T : ISaveObject, new()

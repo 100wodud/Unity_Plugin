@@ -11,7 +11,8 @@ namespace ActionFit_Plugin.Data.Scripts
         #region Save Fields
     
         private const string SAVE_FILE_NAME = "save";
-        private static GlobalSave _globalSave;
+        public static GlobalSave GlobalSave;
+        // Debug.Log(SaveController.GlobalSave.LastExitTime);
         private static bool _isSaveLoaded;
         private static bool _isSaveRequired;
 
@@ -59,7 +60,7 @@ namespace ActionFit_Plugin.Data.Scripts
                 return default;
             }
 
-            return _globalSave.GetSaveObject<T>(hash);
+            return GlobalSave.GetSaveObject<T>(hash);
         }
 
         public static T GetSaveObject<T>(string uniqueName) where T : ISaveObject, new()
@@ -69,8 +70,8 @@ namespace ActionFit_Plugin.Data.Scripts
 
         private static void InitClear(float time)
         {
-            _globalSave = new GlobalSave();
-            _globalSave.Init(time);
+            GlobalSave = new GlobalSave();
+            GlobalSave.Init(time);
 
             Debug.Log("[Save Controller]: Created clear save!");
 
@@ -83,9 +84,9 @@ namespace ActionFit_Plugin.Data.Scripts
                 return;
 
             // Try to read and deserialize file or create new one
-            _globalSave = BaseSaveWrapper.ActiveWrapper.Load(SAVE_FILE_NAME);
+            GlobalSave = BaseSaveWrapper.ActiveWrapper.Load(SAVE_FILE_NAME);
 
-            _globalSave.Init(time);
+            GlobalSave.Init(time);
 
             Debug.Log("[Save Controller]: Save is loaded!");
 
@@ -95,19 +96,19 @@ namespace ActionFit_Plugin.Data.Scripts
         public static void Save(bool forceSave = false, bool useThreads = true)
         {
             if (!forceSave && !_isSaveRequired) return;
-            if (_globalSave == null) return;
+            if (GlobalSave == null) return;
 
-            _globalSave.Flush(true);
+            GlobalSave.Flush(true);
 
             BaseSaveWrapper saveWrapper = BaseSaveWrapper.ActiveWrapper;
             if(useThreads && saveWrapper.UseThreads())
             {
-                Thread saveThread = new Thread(() => BaseSaveWrapper.ActiveWrapper.Save(_globalSave, SAVE_FILE_NAME));
+                Thread saveThread = new Thread(() => BaseSaveWrapper.ActiveWrapper.Save(GlobalSave, SAVE_FILE_NAME));
                 saveThread.Start();
             }
             else
             {
-                BaseSaveWrapper.ActiveWrapper.Save(_globalSave, SAVE_FILE_NAME);
+                BaseSaveWrapper.ActiveWrapper.Save(GlobalSave, SAVE_FILE_NAME);
             }
 
             Debug.Log("[Save Controller]: Game is saved!");

@@ -56,7 +56,7 @@ namespace ActionFit_Plugin.Editor
                 {
                     Name = "* UniTask",
                     Description = "C# async/await를 최적화한 유틸리티",
-                    Source = "com.elex.unitask"
+                    Source = "com.cysharp.unitask"
                 },
                 new()
                 {
@@ -69,12 +69,6 @@ namespace ActionFit_Plugin.Editor
                     Name = "* Localization",
                     Description = "Unity Localize 시스템",
                     Source = "com.unity.localization"
-                },
-                new()
-                {
-                    Name = "* In App Purchase",
-                    Description = "Unity IAP 시스템",
-                    Source = "com.unity.purchasing@4.13.0"
                 }
             };
 
@@ -249,8 +243,6 @@ namespace ActionFit_Plugin.Editor
                     if (pkg.Request.Status == StatusCode.Success)
                     {
                         pkg.Status = "설치됨";
-                        string symbol = $"ENABLE_{pkg.Name.ToUpper()}_SDK";
-                        if(pkg.Name is "* In App Purchase") AddScriptingDefineSymbol("ENABLE_IN_APP_PURCHASE");
                     }
                     else
                         pkg.Status = "실패";
@@ -299,19 +291,6 @@ namespace ActionFit_Plugin.Editor
             tex.SetPixel(0, 0, color);
             tex.Apply();
             return tex;
-        }
-        
-        private void AddScriptingDefineSymbol(string symbol)
-        {
-            var namedTarget = NamedBuildTarget.FromBuildTargetGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
-            var defines = PlayerSettings.GetScriptingDefineSymbols(namedTarget);
-
-            var defineList = new HashSet<string>(defines.Split(';'));
-            if (!defineList.Contains(symbol))
-            {
-                defineList.Add(symbol);
-                PlayerSettings.SetScriptingDefineSymbols(namedTarget, string.Join(";", defineList));
-            }
         }
     }
 }

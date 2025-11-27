@@ -6,6 +6,7 @@ namespace ActionFit_Plugin.IAP
 {
     public class IAPFunction
     {
+#if ENABLE_IN_APP_PURCHASE
         #region Logger
 
         private string Revenue(PurchaseEventArgs purchaseEventArgs) => purchaseEventArgs.purchasedProduct.metadata.localizedPriceString;
@@ -30,5 +31,6 @@ namespace ActionFit_Plugin.IAP
         }
         
         #endregion
+#endif
     }
 }

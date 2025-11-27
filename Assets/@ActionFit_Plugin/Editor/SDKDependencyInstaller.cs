@@ -54,6 +54,12 @@ namespace ActionFit_Plugin.Editor
                 },
                 new()
                 {
+                    Name = "* In App Purchase",
+                    Description = "Unity IAP 시스템",
+                    Source = "com.unity.purchasing@4.13.0"
+                },
+                new()
+                {
                     Name = "Singular",
                     Description = "Singular SDK",
                     Source = "https://github.com/singular-labs/Singular-Unity-SDK.git"
@@ -243,7 +249,8 @@ namespace ActionFit_Plugin.Editor
                     {
                         pkg.Status = "설치됨";
                         string symbol = $"ENABLE_{pkg.Name.ToUpper()}_SDK";
-                        if(pkg.Name is "Singular" or "AppLovin" or "GAN") AddScriptingDefineSymbol(symbol);
+                        if(pkg.Name is "Singular" or "AppLovin" or "GAN") AddScriptingDefineSymbolToAllPlatforms(symbol);
+                        if(pkg.Name is "* In App Purchase") AddScriptingDefineSymbolToAllPlatforms("ENABLE_IN_APP_PURCHASE");
                     }
                     else
                         pkg.Status = "실패";
@@ -292,18 +299,25 @@ namespace ActionFit_Plugin.Editor
             return tex;
         }
         
-        private void AddScriptingDefineSymbol(string symbol)
+        private static void AddScriptingDefineSymbol(BuildTargetGroup targetGroup, string symbol)
         {
-            var namedTarget = NamedBuildTarget.FromBuildTargetGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
+            var namedTarget = NamedBuildTarget.FromBuildTargetGroup(targetGroup);
             var defines = PlayerSettings.GetScriptingDefineSymbols(namedTarget);
-
             var defineList = new HashSet<string>(defines.Split(';'));
+
             if (!defineList.Contains(symbol))
             {
                 defineList.Add(symbol);
                 PlayerSettings.SetScriptingDefineSymbols(namedTarget, string.Join(";", defineList));
             }
         }
+
+        private static void AddScriptingDefineSymbolToAllPlatforms(string symbol)
+        {
+            AddScriptingDefineSymbol(BuildTargetGroup.Android, symbol);
+            AddScriptingDefineSymbol(BuildTargetGroup.iOS, symbol);
+        }
+
     }
 }
 #endif

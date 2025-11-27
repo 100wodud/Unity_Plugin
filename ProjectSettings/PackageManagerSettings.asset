@@ -34,7 +34,7 @@ MonoBehaviour:
     m_Name: package.openupm.com
     m_Url: https://package.openupm.com
     m_Scopes:
-    - com.elex.unitask
+    - com.cysharp
     - com.google
     - com.gameanalytics
     - jp.hadashikick

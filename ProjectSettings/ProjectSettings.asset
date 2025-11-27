@@ -566,6 +566,9 @@ PlayerSettings:
   - serializedVersion: 3
     m_BuildTarget: Android
     m_Formats: 03000000
+  - serializedVersion: 3
+    m_BuildTarget: iOS
+    m_Formats: 03000000
   playModeTestRunnerEnabled: 0
   runPlayModeTestAsEditModeTest: 0
   actionOnDotNetUnhandledException: 1
@@ -832,25 +835,25 @@ PlayerSettings:
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
-    Android: PROJECT_INSTALLED_HAPTIC;ARM_UNITASK;ENABLE_GAN_SDK;gameanalytics_max_enabled;gameanalytics_admob_enabled;ENABLE_APPLOVIN_SDK;ENABLE_SINGULAR_SDK;ENABLE_IN_APP_PURCHASE;ENABLE_FIREBASE_SDK
-    EmbeddedLinux: ENABLE_JSON_CATALOG;ARM_UNITASK
-    GameCoreScarlett: ARM_UNITASK
-    GameCoreXboxOne: ARM_UNITASK
-    Kepler: ARM_UNITASK
-    LinuxHeadlessSimulation: ENABLE_JSON_CATALOG;ARM_UNITASK
-    Nintendo Switch: ENABLE_JSON_CATALOG;ARM_UNITASK
-    PS4: ENABLE_JSON_CATALOG;ARM_UNITASK
-    PS5: ARM_UNITASK
-    QNX: ENABLE_JSON_CATALOG;ARM_UNITASK
-    ReservedCFE: ARM_UNITASK
+    Android: PROJECT_INSTALLED_HAPTIC;ARM_UNITASK;ENABLE_GAN_SDK;gameanalytics_max_enabled;gameanalytics_admob_enabled;ENABLE_APPLOVIN_SDK;ENABLE_SINGULAR_SDK;ENABLE_IN_APP_PURCHASE;ENABLE_FIREBASE_SDK;DOTWEEN
+    EmbeddedLinux: ENABLE_JSON_CATALOG;ARM_UNITASK;DOTWEEN
+    GameCoreScarlett: ARM_UNITASK;DOTWEEN
+    GameCoreXboxOne: ARM_UNITASK;DOTWEEN
+    Kepler: ARM_UNITASK;DOTWEEN
+    LinuxHeadlessSimulation: ENABLE_JSON_CATALOG;ARM_UNITASK;DOTWEEN
+    Nintendo Switch: ENABLE_JSON_CATALOG;ARM_UNITASK;DOTWEEN
+    PS4: ENABLE_JSON_CATALOG;ARM_UNITASK;DOTWEEN
+    PS5: ARM_UNITASK;DOTWEEN
+    QNX: ENABLE_JSON_CATALOG;ARM_UNITASK;DOTWEEN
+    ReservedCFE: ARM_UNITASK;DOTWEEN
     Server: ENABLE_JSON_CATALOG
-    Standalone: ENABLE_JSON_CATALOG;ARM_UNITASK
-    VisionOS: ARM_UNITASK
-    WebGL: ENABLE_JSON_CATALOG
-    Windows Store Apps: ENABLE_JSON_CATALOG;ARM_UNITASK
-    XboxOne: ENABLE_JSON_CATALOG;ARM_UNITASK
-    iPhone: ENABLE_JSON_CATALOG;ARM_UNITASK;gameanalytics_max_enabled;gameanalytics_admob_enabled
-    tvOS: ENABLE_JSON_CATALOG;ARM_UNITASK
+    Standalone: ENABLE_JSON_CATALOG;ARM_UNITASK;DOTWEEN
+    VisionOS: ARM_UNITASK;DOTWEEN
+    WebGL: ENABLE_JSON_CATALOG;DOTWEEN
+    Windows Store Apps: ENABLE_JSON_CATALOG;ARM_UNITASK;DOTWEEN
+    XboxOne: ENABLE_JSON_CATALOG;ARM_UNITASK;DOTWEEN
+    iPhone: PROJECT_INSTALLED_HAPTIC;ARM_UNITASK;ENABLE_GAN_SDK;gameanalytics_max_enabled;gameanalytics_admob_enabled;ENABLE_APPLOVIN_SDK;ENABLE_SINGULAR_SDK;ENABLE_IN_APP_PURCHASE;ENABLE_FIREBASE_SDK;DOTWEEN
+    tvOS: ENABLE_JSON_CATALOG;ARM_UNITASK;DOTWEEN
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

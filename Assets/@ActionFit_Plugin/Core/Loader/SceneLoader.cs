@@ -12,7 +12,7 @@ public enum SceneName
 
 public static class SceneLoader
 {
-    public static string TargetScene { get; private set; }
+    public static SceneName TargetScene { get; private set; }
     private static Func<UniTask> OnLoadingSceneLoadBefore { get; set; }
     public static Func<UniTask> OnGameStartLoading { get; private set; }
     public static Action OnSceneLoadedComplete { get; private set; }
@@ -25,7 +25,7 @@ public static class SceneLoader
 
     public static async void LoadSceneWithLoading(SceneName targetScene, Func<UniTask> onLoadingLoadBefore = null, Func<UniTask> onGameStartLoading = null, Action onCompleteAction = null)
     {
-        TargetScene = targetScene.ToString();
+        TargetScene = targetScene;
         OnLoadingSceneLoadBefore = onLoadingLoadBefore;
         OnGameStartLoading = onGameStartLoading;
         OnSceneLoadedComplete = onCompleteAction;
@@ -35,6 +35,7 @@ public static class SceneLoader
 
     public static void LoadSceneWithoutLoading(SceneName targetScene, Action onCompleteAction = null)
     {
+        TargetScene = targetScene;
         OnSceneLoadedComplete = onCompleteAction;
         SceneManager.LoadScene(targetScene.ToString(), LoadSceneMode.Single);
     }

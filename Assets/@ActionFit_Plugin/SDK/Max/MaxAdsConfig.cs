@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace ActionFit_Plugin.SDK.Max
 {
-    [CreateAssetMenu(fileName = "@MaxAdsConfig", menuName = "ActionFit/SDK/MaxAdsConfig")]
+    [CreateAssetMenu(fileName = "MaxAdsConfig", menuName = "ActionFit/SDK/MaxAdsConfig")]
     public class MaxAdsConfig : ScriptableObject
     {
         [Header("광고가 시작 될 스테이지")] 

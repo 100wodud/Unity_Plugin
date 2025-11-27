@@ -16,16 +16,22 @@ namespace ActionFit_Plugin.IAP
 #if ENABLE_IN_APP_PURCHASE
     public class IAPManager : MonoBehaviour, IDetailedStoreListener
     {
+        #region MyRegion
+
         private const string Environment = "production";
         public static IStoreController StoreController; // 구매과정을 제어하는 함수 제공 
         private IExtensionProvider _storeExtensionProvider; // 크로스 플랫폼 확장 메서드 제공
         private ConfigurationBuilder _builder;
         private readonly IAPFunction _iapFunction = new();
-
-        public bool IsInitialized() => StoreController != null && _storeExtensionProvider != null;
         private bool _isRestore = false;
         private TaskCompletionSource<bool> _iapInitTcs;
-        public readonly Dictionary<IAPProductID, Action> ProductPurchaseEvents = new();
+        private readonly Dictionary<IAPProductID, Action> _productPurchaseEvents = new();
+        
+        #endregion
+
+        public bool IsInitialized() => StoreController != null && _storeExtensionProvider != null;
+        public event Action OnCompleteEvent;
+        public event Action OnFailedEvent;
         
         public async UniTask Initialized()
         {
@@ -52,7 +58,46 @@ namespace ActionFit_Plugin.IAP
             }
         }
         
+        public void BuyProduct(IAPProductID productType)
+        {
+            SDKManager.IsDoingIAP = true;
+#if UNITY_EDITOR
+            ProcessPurchase(productType);
+            SDKManager.IsDoingIAP = false;
+            // State Changed
+            
+            
+#else
+            string productId = productType.ToString();
+            if (!IsInitialized())
+            {
+                Debug.LogError("[IAP] Initialized Fail");
+                return;
+            }
+            
+            // UI Waiting Popup
 
+            //
+            
+            Product product = StoreController.products.WithID(productId);
+            if (product is { availableToPurchase: true })
+            {
+                try
+                {
+                    StoreController.InitiatePurchase(product);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError("[IAP] BuyProduct Fail: " + e.Message);
+                }
+            }
+            else
+            {
+                Debug.LogError("[IAP] Cannot BuyProduct" );
+            }
+#endif
+        }
+        
         private void InitializePurchasing()
         {
             if (IsInitialized())  return;
@@ -67,7 +112,7 @@ namespace ActionFit_Plugin.IAP
                             ? ProductType.NonConsumable
                             : ProductType.Consumable);
                 
-                    ProductPurchaseEvents.Add(productId, action.PayAction(productId));
+                    _productPurchaseEvents.Add(productId, action.PayAction(productId));
                 }
                 catch (Exception ex)
                 {
@@ -86,52 +131,12 @@ namespace ActionFit_Plugin.IAP
             _iapInitTcs?.TrySetResult(true);
             ValidateAllNonConsumable();
         }
-
-        
-        public void BuyProduct(IAPProductID productType)
-        {
-            SDKManager.IsDoingIAP = true;
-#if UNITY_EDITOR
-            ProcessPurchase(productType);
-            SDKManager.IsDoingIAP = false;
-            return;
-            // State Changed
-#else
-            
-            string productId = productType.ToString();
-            
-            if (!IsInitialized())
-            {
-                ShowPopup(null, "IAP is not Initialized");
-                return;
-            }
-            
-            // UI Waiting Popup
-            
-            Product product = StoreController.products.WithID(productId);
-            if (product is { availableToPurchase: true })
-            {
-                try
-                {
-                    StoreController.InitiatePurchase(product);
-                }
-                catch (Exception e)
-                {
-                    ShowPopup(product, "Something Wrong: " + e.Message);
-                }
-            }
-            else
-            {
-                ShowPopup(product, "Can not Buy Item");
-            }
-#endif
-        }
         
         public Product GetProduct(IAPProductID id) => IsInitialized() ? StoreController.products.WithID(id.ToString()) : null;
         public void OnPurchaseFailed(Product product, PurchaseFailureDescription failureDescription) => OnFailedIAPEvent(product, failureDescription.reason.ToString());
         public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason) => OnFailedIAPEvent(product, failureReason.ToString());
-        public void OnInitializeFailed(InitializationFailureReason error) => _iapInitTcs?.TrySetException(new Exception("IAP Init Failed"));
-        public void OnInitializeFailed(InitializationFailureReason error, string message) => _iapInitTcs?.TrySetException(new Exception("IAP Init Failed"));
+        public void OnInitializeFailed(InitializationFailureReason error) => _iapInitTcs?.TrySetException(new Exception("[IAP] Init Failed"));
+        public void OnInitializeFailed(InitializationFailureReason error, string message) => _iapInitTcs?.TrySetException(new Exception("[IAP] Init Failed"));
         private IAPProductID StringToEnum(string productId)
         {
             if (Enum.TryParse(productId, out IAPProductID parsedEnum)) return parsedEnum;
@@ -141,9 +146,9 @@ namespace ActionFit_Plugin.IAP
         public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs purchaseEvent)
         {
 #if UNITY_ANDROID
-            _iapFunction.SDKLogger("Google Play Store",purchaseEvent);
+            _iapFunction.SDKLogger("Google Play Store", purchaseEvent);
 #elif UNITY_IOS
-            _iapFunction.SDKLogger("Apple App Store",purchaseEvent);
+            _iapFunction.SDKLogger("Apple App Store", purchaseEvent);
 #endif
             
             IAPProductID currentProductType = StringToEnum(purchaseEvent.purchasedProduct.definition.id);
@@ -168,7 +173,7 @@ namespace ActionFit_Plugin.IAP
             }
             
             
-            if (!ProductPurchaseEvents.TryGetValue(currentProductType, out Action iapProduct))
+            if (!_productPurchaseEvents.TryGetValue(currentProductType, out Action iapProduct))
                 return PurchaseProcessingResult.Pending;
             // 팝업
             OnCompleteIAPEvent();
@@ -182,7 +187,7 @@ namespace ActionFit_Plugin.IAP
         private PurchaseProcessingResult ProcessPurchase(IAPProductID id)
         {
             // <==== Purchase Complete ===> //
-            if (ProductPurchaseEvents.TryGetValue(id, out Action iapProduct))
+            if (_productPurchaseEvents.TryGetValue(id, out Action iapProduct))
             {
                 iapProduct.Invoke();
                 return PurchaseProcessingResult.Complete;
@@ -211,7 +216,7 @@ namespace ActionFit_Plugin.IAP
             bool result = iapValidator.NonConsumableValidate(productId);
             if (restore && result)
             {
-                if (ProductPurchaseEvents.TryGetValue(productId, out Action iapProduct))
+                if (_productPurchaseEvents.TryGetValue(productId, out Action iapProduct))
                 {
                     iapProduct.Invoke();
                 }
@@ -226,7 +231,7 @@ namespace ActionFit_Plugin.IAP
             foreach (IAPProductID productId in IAPProductCategory.NonConsumable)
             {
                 iapValidator.NonConsumableValidate(productId);
-                if (ProductPurchaseEvents.TryGetValue(productId, out Action iapProduct))
+                if (_productPurchaseEvents.TryGetValue(productId, out Action iapProduct))
                 {
                     iapProduct.Invoke();
                 }
@@ -238,11 +243,13 @@ namespace ActionFit_Plugin.IAP
         private void OnCompleteIAPEvent(Product product = null, string message = null)
         {
             // 알아서 넣으시오
+            OnCompleteEvent?.Invoke();
         }
         
         private void OnFailedIAPEvent(Product product = null, string message = null)
         {
             // 알아서 넣으시오
+            OnFailedEvent?.Invoke();
         }
     }
 #endif

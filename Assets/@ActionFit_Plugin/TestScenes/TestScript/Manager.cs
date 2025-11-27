@@ -1,10 +1,12 @@
 using ActionFit_Plugin.Localize;
-using ActionFit_Plugin.SDK;
 using ActionFit_Plugin.Settings;
 using Cysharp.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+#if ENABLE_APPLOVIN_SDK
+using ActionFit_Plugin.SDK;
+#endif
 
 public class Manager : MonoBehaviour
 {

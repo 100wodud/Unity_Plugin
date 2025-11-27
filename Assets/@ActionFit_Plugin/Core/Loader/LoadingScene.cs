@@ -8,13 +8,13 @@ namespace ActionFit_Plugin.Core.Loader
     {
         private async void Awake()
         {
-            string targetScene = SceneLoader.TargetScene;
-            if (string.IsNullOrEmpty(targetScene)) return;
+            SceneName targetScene = SceneLoader.TargetScene;
+            if (string.IsNullOrEmpty(targetScene.ToString())) return;
             
             if (!Initializer.Instance.AppFirstOpen) await GameStartLoading();
             
             SceneLoader.PrepareSceneInit();
-            var loadScene = SceneManager.LoadSceneAsync(targetScene, LoadSceneMode.Additive);
+            var loadScene = SceneManager.LoadSceneAsync(targetScene.ToString(), LoadSceneMode.Additive);
             if (loadScene == null) return;
             loadScene.allowSceneActivation = false;
             if (Initializer.Instance.AppFirstOpen) await SceneChangeLoading();

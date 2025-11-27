@@ -51,11 +51,20 @@
       "dependencies": {},
       "hash": "a28f36e6548045e9af1936bebe35b59b6134d8e6"
     },
-    "com.elex.unitask": {
-      "version": "2.5.3",
+    "com.cysharp.unitask": {
+      "version": "2.5.10",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
+    "com.gameanalytics.sdk": {
+      "version": "7.10.6",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.google.external-dependency-manager": "1.2.168"
+      },
       "url": "https://package.openupm.com"
     },
     "com.google.ads.mobile": {
@@ -101,6 +110,15 @@
         "com.google.firebase.app": "12.10.1"
       },
       "hash": "848517c6e610a9a9844265de67273bfc02bf1b22"
+    },
+    "com.hs-architect.addressable-resources-system": {
+      "version": "https://github.com/HuiSungz/Unity-AddressableResourcesSystem.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.addressables": "2.3.16"
+      },
+      "hash": "2823ee9dcba323ac7e33523cb22d04ebc1b22251"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",

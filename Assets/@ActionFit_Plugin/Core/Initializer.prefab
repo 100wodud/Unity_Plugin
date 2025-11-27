@@ -356,6 +356,8 @@ GameObject:
   - component: {fileID: 2840719652790978331}
   - component: {fileID: 2014292251077782102}
   - component: {fileID: 4230885709272382762}
+  - component: {fileID: 7085119079100427255}
+  - component: {fileID: 6167440905879147153}
   m_Layer: 0
   m_Name: Initializer
   m_TagString: Untagged
@@ -436,3 +438,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b454e92d7e74648bacbb4fd127340c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ActionFit_Plugin.IAP.IAPManager
+--- !u!114 &7085119079100427255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9219945529968221172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adefe18d2f40dd84c8666cc766d5de82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameAnalyticsSDK::GameAnalyticsSDK.Events.GA_SpecialEvents
+--- !u!114 &6167440905879147153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9219945529968221172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1488bee7925fe433fbddf989c50ad4ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: GameAnalyticsSDK::GameAnalyticsSDK.GameAnalytics

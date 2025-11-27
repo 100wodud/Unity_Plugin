@@ -26,16 +26,28 @@ namespace ActionFit_Plugin.SDK
         public static async void Initialized()
         {
             if(IsInitialized) return;
-            AsyncOperationHandle<MaxAdsConfig> handle = Addressables.LoadAssetAsync<MaxAdsConfig>("@MaxAdsConfig");
-            await handle.Task;
+            // AsyncOperationHandle<MaxAdsConfig> handle = Addressables.LoadAssetAsync<MaxAdsConfig>("@MaxAdsConfig");
+            // await handle.Task;
+            //
+            // if (handle.Status != AsyncOperationStatus.Succeeded)
+            // {
+            //     Debug.LogError("[SDKManager] MaxKey Addressables Load Fail!");
+            //     IsInitialized = true;
+            //     return;
+            // }
+            // _maxKey = handle.Result;
+            
+            ResourceRequest request = Resources.LoadAsync<MaxAdsConfig>("SettingSO/MaxAdsConfig");
+            await request.ToUniTask();
 
-            if (handle.Status != AsyncOperationStatus.Succeeded)
+            _maxKey = request.asset as MaxAdsConfig;
+
+            if (_maxKey == null)
             {
-                Debug.LogError("[SDKManager] MaxKey Addressables Load Fail!");
-                IsInitialized = true;
+                Debug.LogError("[Localized] LocalizeProvider Resources Load Fail!");
                 return;
             }
-            _maxKey = handle.Result;
+            
             Max = new MaxSDKInitializer();
             MaxKeyInitialize();
             
@@ -61,16 +73,16 @@ namespace ActionFit_Plugin.SDK
             _maxKeyData = new MaxData
             {
                 TestKey = _maxKey.maxTestDeviceIds,
-#if UNITY_ANDROID || UNITY_EDITOR
+#if UNITY_ANDROID
                 BannerKey = _maxKey.androidBannerKey,
                 InterstitialKey = _maxKey.androidInterstitialKey,
                 RewardKey = _maxKey.androidRewardKey,
                 AppOpenKey = _maxKey.androidAppOpenKey,
 #elif UNITY_IOS
-                BannerKey = maxKey.iosBannerKey,
-                InterstitialKey = maxKey.iosInterstitialKey,
-                RewardKey = maxKey.iosRewardKey,
-                AppOpenKey = maxKey.iosAppOpenKey,
+                BannerKey = _maxKey.iosBannerKey,
+                InterstitialKey = _maxKey.iosInterstitialKey,
+                RewardKey = _maxKey.iosRewardKey,
+                AppOpenKey = _maxKey.iosAppOpenKey,
 #endif
             };
         }

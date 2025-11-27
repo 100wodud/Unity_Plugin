@@ -35,4 +35,29 @@ public static class PlayerData
         get => _save.clearLevel;
         set => SetAndSave(ref _save.clearLevel, value, v => _save.clearLevel = v, PlayerDataEvent.InvokeLevel);
     }
+    
+    #region Heart
+    
+    public const int MaxHeart = 5;
+    public const int HeartInterval = 15;
+    
+    public static int Heart
+    {
+        get => _save.heart;
+        set => SetAndSave(ref _save.heart, value, v => _save.heart = v, PlayerDataEvent.InvokeHeart);
+    }
+
+    public static long LastHeartUsedTime
+    {
+        get => _save.lastHeartUsedTime;
+        set => SetAndSave(ref _save.lastHeartUsedTime, value, v => _save.lastHeartUsedTime = v);
+    }
+
+    public static long HeartUnlimitedTime
+    {
+        get => _save.heartUnlimitedTime;
+        set => SetAndSave(ref _save.heartUnlimitedTime, value, v => _save.heartUnlimitedTime = v, PlayerDataEvent.InvokeUnlimitedHeart);
+    }
+
+    #endregion
 }

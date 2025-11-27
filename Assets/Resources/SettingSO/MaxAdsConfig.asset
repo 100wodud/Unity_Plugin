@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 138ba70b3217a4ffa9812d39769aee42, type: 3}
-  m_Name: '@MaxAdsConfig'
+  m_Name: MaxAdsConfig
   m_EditorClassIdentifier: Assembly-CSharp::ActionFit_Plugin.SDK.Max.MaxAdsConfig
   defaultAdsLevel: 0
   commonInterCool: 0

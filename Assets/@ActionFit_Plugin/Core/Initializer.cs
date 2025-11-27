@@ -1,11 +1,24 @@
 using System;
-using ActionFit_Plugin.IAP;
+using ActionFit_Plugin.Data.Scripts;
 using ActionFit_Plugin.Localize;
-using ActionFit_Plugin.SDK;
-using ActionFit_Plugin.SDK.Firebase;
 using ActionFit_Plugin.Settings;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+#if ENABLE_APPLOVIN_SDK
+using ActionFit_Plugin.SDK;
+#endif
+#if ENABLE_FIREBASE_SDK
+using ActionFit_Plugin.SDK.Firebase;
+#endif
+#if ENABLE_GAN_SDK
+using GameAnalyticsSDK;
+#endif
+#if ENABLE_SINGULAR_SDK
+using Singular;
+#endif
+#if ENABLE_IN_APP_PURCHASE
+using ActionFit_Plugin.IAP;
+#endif
 
 namespace ActionFit_Plugin.Core
 {
@@ -32,7 +45,7 @@ namespace ActionFit_Plugin.Core
 
         private void Start()
         {
-            //ConfigureLogger();
+            ConfigureLogger();
             Initialized();
         }
 
@@ -56,26 +69,52 @@ namespace ActionFit_Plugin.Core
         {
             PlayerData.Initialized();
             await UniTask.WaitUntil(()=> PlayerData.IsInitialized);
-            
             Setting.Initialized();
             await UniTask.WaitUntil(()=> Setting.IsInitialized);
-            
             LocalizeInitializer.Initialized();
             await UniTask.WaitUntil(()=> LocalizeInitializer.IsInitialized);
+            
+            #region SDK & IAP
 
 #if ENABLE_APPLOVIN_SDK
             SDKManager.Initialized();
             await UniTask.WaitUntil(()=> SDKManager.IsInitialized);
 #endif
             
+#if ENABLE_SINGULAR_SDK
+            try
+            {
+                SingularSDK.InitializeSingularSDK();
+                await UniTask.WaitUntil(()=> SingularSDK.Initialized).Timeout(TimeSpan.FromSeconds(2));
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("[Singular] Fail Initialized: " + e.Message);
+            }
+#endif
+
+#if ENABLE_GAN_SDK
+            try
+            {
+                GameAnalytics.StartSession();
+                await UniTask.WaitUntil(()=> GameAnalytics.Initialized).Timeout(TimeSpan.FromSeconds(2));
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("[GAN] Fail Initialized: " + e.Message);
+            }
+#endif
+            
 #if ENABLE_FIREBASE_SDK
             await FirebaseInitializer.Initialized();
-            await UniTask.WaitUntil(()=> FirebaseInitializer.IsInitialized);
+            await UniTask.WaitUntil(() => FirebaseInitializer.IsInitialized);
 #endif
             
 #if ENABLE_IN_APP_PURCHASE
-            await IAP.Initialized().Timeout(TimeSpan.FromSeconds(4));;
+            await IAP.Initialized();
 #endif
+
+            #endregion
         }
         
         private void OnSceneLoadedComplete()

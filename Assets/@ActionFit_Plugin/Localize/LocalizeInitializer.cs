@@ -16,17 +16,29 @@ namespace ActionFit_Plugin.Localize
             if (IsInitialized) return;
             IsInitialized = true;
 
-            AsyncOperationHandle<LocalizeProvider> handle = Addressables.LoadAssetAsync<LocalizeProvider>("LocalizeProvider");
-            await handle.Task;
+            // AsyncOperationHandle<LocalizeProvider> handle = Addressables.LoadAssetAsync<LocalizeProvider>("LocalizeProvider");
+            // await handle.Task;
+            //
+            // if (handle.Status != AsyncOperationStatus.Succeeded)
+            // {
+            //     Debug.LogError("[Localized] LocalizeProvider Addressables Load Fail!");
+            //     IsInitialized = true;
+            //     return;
+            // }
+            //
+            // _provider = handle.Result;
+            
+            ResourceRequest request = Resources.LoadAsync<LocalizeProvider>("SettingSO/LocalizeProvider");
+            await request.ToUniTask();
 
-            if (handle.Status != AsyncOperationStatus.Succeeded)
+            _provider = request.asset as LocalizeProvider;
+
+            if (_provider == null)
             {
-                Debug.LogError("[Localized] LocalizeProvider Addressables Load Fail!");
-                IsInitialized = true;
+                Debug.LogError("[Localized] LocalizeProvider Resources Load Fail!");
                 return;
             }
             
-            _provider = handle.Result;
             await _provider.InitProvider();
             Debug.Log("[Localized] Initialized");
         }
